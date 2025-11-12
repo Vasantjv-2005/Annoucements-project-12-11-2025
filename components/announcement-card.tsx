@@ -12,24 +12,24 @@ export function AnnouncementCard({ announcement, onCardClick }: AnnouncementCard
   return (
     <button
       onClick={() => onCardClick?.(announcement.id)}
-      className="w-full text-left bg-card hover:shadow-md transition-shadow duration-200 rounded-xl p-6 border border-border animate-in fade-in"
+      className="w-full text-left bg-card/95 hover:bg-card transition-colors rounded-xl p-6 border border-border hover:border-ring/50 shadow-sm hover:shadow-lg duration-200 will-change-transform ease-out hover:-translate-y-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
     >
       <div className="flex justify-between items-start gap-4 mb-3">
-        <h3 className="text-lg font-bold text-foreground line-clamp-2 flex-1">{announcement.title}</h3>
+        <h3 className="text-lg font-semibold tracking-tight text-foreground line-clamp-2 flex-1">{announcement.title}</h3>
         {!announcement.is_published && (
-          <span className="text-xs font-semibold px-2 py-1 rounded-full bg-muted text-muted-foreground whitespace-nowrap">
+          <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-muted text-muted-foreground ring-1 ring-border whitespace-nowrap">
             Draft
           </span>
         )}
       </div>
 
-      <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{truncateText(announcement.message, 200)}</p>
+      <p className="text-muted-foreground/90 text-sm mb-5 leading-relaxed line-clamp-3">{truncateText(announcement.message, 200)}</p>
 
       <div className="flex flex-wrap gap-2 mb-4">
         {announcement.tags.map((tag) => (
           <span
             key={tag}
-            className="text-xs px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground font-medium"
+            className="text-[11px] px-2.5 py-1 rounded-full bg-secondary/70 hover:bg-secondary text-secondary-foreground font-medium transition-colors ring-1 ring-border/80"
           >
             #{tag}
           </span>
@@ -42,16 +42,16 @@ export function AnnouncementCard({ announcement, onCardClick }: AnnouncementCard
             <img
               src={announcement.author.avatar_url || "/placeholder.svg"}
               alt={announcement.author.name || "Author"}
-              className="w-6 h-6 rounded-full bg-secondary"
+              className="w-6 h-6 rounded-full bg-secondary ring-1 ring-border object-cover"
             />
           ) : (
-            <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center font-semibold text-xs">
+            <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center font-semibold text-[11px] ring-1 ring-border">
               {(announcement.author?.name || "A").charAt(0).toUpperCase()}
             </div>
           )}
-          <span>{announcement.author?.name || "Unknown"}</span>
+          <span className="text-foreground/90">{announcement.author?.name || "Unknown"}</span>
         </div>
-        <span>{formatDate(announcement.created_at)}</span>
+        <span className="tabular-nums text-muted-foreground/90">{formatDate(announcement.created_at)}</span>
       </div>
     </button>
   )

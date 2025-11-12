@@ -209,14 +209,14 @@ export default function Home() {
             placeholder="Search announcements..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground/80 focus:outline-none focus:ring-2 focus:ring-ring shadow-sm"
           />
 
           <div className="flex flex-col sm:flex-row gap-4">
             <select
               value={selectedTag || ""}
               onChange={(e) => setSelectedTag(e.target.value || null)}
-              className="px-4 py-2 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              className="px-4 py-2 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring shadow-sm"
             >
               <option value="">All Tags</option>
               {allTags.map((tag) => (
@@ -234,7 +234,7 @@ export default function Home() {
             <div className="w-8 h-8 border-4 border-border border-t-primary rounded-full animate-spin" />
           </div>
         ) : filteredAnnouncements.length > 0 ? (
-          <div className="grid gap-4 md:gap-6">
+          <div className="grid gap-5 md:gap-6">
             {filteredAnnouncements.map((announcement) => (
               <AnnouncementCard
                 key={announcement.id}
@@ -269,7 +269,7 @@ export default function Home() {
       {user?.is_admin && (
         <button
           onClick={() => setIsComposeOpen(true)}
-          className="fixed bottom-8 right-8 w-16 h-16 rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-opacity shadow-lg flex items-center justify-center text-2xl animate-in fade-in slide-in-from-bottom-4"
+          className="fixed bottom-8 right-8 w-16 h-16 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center text-2xl animate-in fade-in slide-in-from-bottom-4"
           aria-label="Create new announcement"
         >
           +

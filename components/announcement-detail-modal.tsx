@@ -44,14 +44,14 @@ export function AnnouncementDetailModal({
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-40 animate-in fade-in">
-      <div className="bg-card border border-border rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-in slide-in-from-bottom-4">
-        <div className="sticky top-0 bg-card border-b border-border px-6 py-4 flex justify-between items-center">
-          <h2 className="text-xl font-bold text-foreground flex-1 truncate">{announcement.title}</h2>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-40 animate-in fade-in">
+      <div className="bg-card/95 supports-backdrop-blur:bg-card border border-border/80 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-in slide-in-from-bottom-4">
+        <div className="sticky top-0 bg-card/95 border-b border-border/80 px-6 py-4 flex justify-between items-center">
+          <h2 className="text-xl font-semibold tracking-tight text-foreground flex-1 truncate">{announcement.title}</h2>
           <button
             onClick={onClose}
             disabled={isDeleting}
-            className="text-muted-foreground hover:text-foreground transition-colors disabled:opacity-50 ml-4"
+            className="h-8 w-8 grid place-items-center rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors disabled:opacity-50 ml-4"
             aria-label="Close modal"
           >
             ✕
@@ -65,20 +65,20 @@ export function AnnouncementDetailModal({
                 <img
                   src={announcement.author.avatar_url || "/placeholder.svg"}
                   alt={announcement.author.name || "Author"}
-                  className="w-10 h-10 rounded-full"
+                  className="w-10 h-10 rounded-full ring-1 ring-border object-cover"
                 />
               ) : (
-                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-semibold text-primary-foreground">
+                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-semibold text-primary-foreground ring-1 ring-border/70">
                   {(announcement.author?.name || "A").charAt(0).toUpperCase()}
                 </div>
               )}
               <div>
                 <p className="font-semibold text-foreground">{announcement.author?.name || "Unknown"}</p>
-                <p className="text-xs text-muted-foreground">{formatDate(announcement.created_at)}</p>
+                <p className="text-xs text-muted-foreground/90 tabular-nums">{formatDate(announcement.created_at)}</p>
               </div>
             </div>
             {!announcement.is_published && (
-              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-muted text-muted-foreground">Draft</span>
+              <span className="text-xs font-medium px-3 py-1 rounded-full bg-muted text-muted-foreground ring-1 ring-border">Draft</span>
             )}
           </div>
 
@@ -86,7 +86,7 @@ export function AnnouncementDetailModal({
             <img
               src={announcement.image_url || "/placeholder.svg"}
               alt="Announcement"
-              className="w-full h-auto max-h-96 object-cover rounded-lg"
+              className="w-full h-auto max-h-96 object-cover rounded-lg ring-1 ring-border/70"
             />
           )}
 
@@ -99,7 +99,7 @@ export function AnnouncementDetailModal({
               {announcement.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs px-3 py-1 rounded-full bg-secondary text-secondary-foreground font-medium"
+                  className="text-xs px-3 py-1 rounded-full bg-secondary/70 hover:bg-secondary text-secondary-foreground font-medium transition-colors ring-1 ring-border/80"
                 >
                   #{tag}
                 </span>
@@ -114,14 +114,14 @@ export function AnnouncementDetailModal({
                   onEdit?.(announcement.id)
                   onClose()
                 }}
-                className="flex-1 px-4 py-2 rounded-lg bg-secondary text-secondary-foreground hover:opacity-90 transition-opacity disabled:opacity-50 font-semibold"
+                className="flex-1 px-4 py-2 rounded-lg bg-secondary text-secondary-foreground shadow-sm hover:shadow hover:-translate-y-px transition-all disabled:opacity-50 font-semibold"
                 disabled={isDeleting}
               >
                 Edit
               </button>
               <button
                 onClick={handleDelete}
-                className="flex-1 px-4 py-2 rounded-lg bg-destructive text-destructive-foreground hover:opacity-90 transition-opacity disabled:opacity-50 font-semibold"
+                className="flex-1 px-4 py-2 rounded-lg bg-destructive text-destructive-foreground shadow-sm hover:shadow hover:-translate-y-px transition-all disabled:opacity-50 font-semibold"
                 disabled={isDeleting}
               >
                 {isDeleting ? "Deleting..." : "Delete"}
