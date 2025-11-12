@@ -202,6 +202,12 @@ export default function Home() {
       <Header />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-6">
+          <h1 className="text-2xl md:text-3xl font-semibold tracking-tight bg-clip-text text-transparent bg-linear-to-r from-(--color-chart-2) to-(--color-chart-4)">
+            Announcements
+          </h1>
+          <p className="text-sm text-muted-foreground mt-1">Stay updated with the latest posts and updates</p>
+        </div>
         {/* Search and Filters */}
         <div className="mb-8 space-y-4">
           <input
@@ -234,7 +240,7 @@ export default function Home() {
             <div className="w-8 h-8 border-4 border-border border-t-primary rounded-full animate-spin" />
           </div>
         ) : filteredAnnouncements.length > 0 ? (
-          <div className="grid gap-5 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {filteredAnnouncements.map((announcement) => (
               <AnnouncementCard
                 key={announcement.id}
@@ -244,7 +250,7 @@ export default function Home() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
+          <div className="text-center py-16 border border-border rounded-2xl bg-card shadow-sm">
             <p className="text-muted-foreground text-lg">No announcements found</p>
           </div>
         )}

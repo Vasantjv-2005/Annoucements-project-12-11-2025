@@ -47,7 +47,9 @@ export function AnnouncementDetailModal({
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-40 animate-in fade-in">
       <div className="bg-card/95 supports-backdrop-blur:bg-card border border-border/80 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-in slide-in-from-bottom-4">
         <div className="sticky top-0 bg-card/95 border-b border-border/80 px-6 py-4 flex justify-between items-center">
-          <h2 className="text-xl font-semibold tracking-tight text-foreground flex-1 truncate">{announcement.title}</h2>
+          <h2 className="text-xl font-semibold tracking-tight flex-1 truncate">
+            <span className="bg-clip-text text-transparent bg-linear-to-r from-(--color-chart-2) to-(--color-chart-4)">{announcement.title}</span>
+          </h2>
           <button
             onClick={onClose}
             disabled={isDeleting}

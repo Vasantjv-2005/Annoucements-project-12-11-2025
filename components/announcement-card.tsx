@@ -15,7 +15,11 @@ export function AnnouncementCard({ announcement, onCardClick }: AnnouncementCard
       className="w-full text-left bg-card/95 hover:bg-card transition-colors rounded-xl p-6 border border-border hover:border-ring/50 shadow-sm hover:shadow-lg duration-200 will-change-transform ease-out hover:-translate-y-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
     >
       <div className="flex justify-between items-start gap-4 mb-3">
-        <h3 className="text-lg font-semibold tracking-tight text-foreground line-clamp-2 flex-1">{announcement.title}</h3>
+        <h3 className="text-lg font-semibold tracking-tight line-clamp-2 flex-1">
+          <span className="bg-clip-text text-transparent bg-linear-to-r from-(--color-chart-2) to-(--color-chart-4)">
+            {announcement.title}
+          </span>
+        </h3>
         {!announcement.is_published && (
           <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-muted text-muted-foreground ring-1 ring-border whitespace-nowrap">
             Draft
@@ -26,14 +30,19 @@ export function AnnouncementCard({ announcement, onCardClick }: AnnouncementCard
       <p className="text-muted-foreground/90 text-sm mb-5 leading-relaxed line-clamp-3">{truncateText(announcement.message, 200)}</p>
 
       <div className="flex flex-wrap gap-2 mb-4">
-        {announcement.tags.map((tag) => (
-          <span
-            key={tag}
-            className="text-[11px] px-2.5 py-1 rounded-full bg-secondary/70 hover:bg-secondary text-secondary-foreground font-medium transition-colors ring-1 ring-border/80"
-          >
-            #{tag}
-          </span>
-        ))}
+        {announcement.tags.map((tag, i) => {
+          const palette = ["var(--color-chart-1)", "var(--color-chart-2)", "var(--color-chart-3)", "var(--color-chart-4)", "var(--color-chart-5)"]
+          const color = palette[i % palette.length]
+          return (
+            <span
+              key={tag}
+              className="text-[11px] px-2.5 py-1 rounded-full font-medium transition-colors border"
+              style={{ color, borderColor: color, background: "color-mix(in oklab, currentColor 12%, transparent)" as any }}
+            >
+              #{tag}
+            </span>
+          )
+        })}
       </div>
 
       <div className="flex items-center justify-between text-xs text-muted-foreground">

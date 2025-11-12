@@ -14,7 +14,7 @@ export function Header() {
       <div className="container max-w-7xl mx-auto px-4 flex h-16 items-center justify-between">
         <div className="flex items-center space-x-4">
           <Link href="/" className="flex items-center space-x-2 select-none">
-            <span className="text-xl font-semibold tracking-tight bg-clip-text text-transparent bg-linear-to-r from-foreground to-foreground/70">
+            <span className="text-xl font-semibold tracking-tight bg-clip-text text-transparent bg-linear-to-r from-(--color-chart-2) to-(--color-chart-4)">
               Announcement Board
             </span>
           </Link>

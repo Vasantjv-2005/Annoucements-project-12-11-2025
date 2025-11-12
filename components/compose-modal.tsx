@@ -190,11 +190,25 @@ export function ComposeModal({ isOpen, onClose, onSubmit, isLoading }: ComposeMo
                     .split(",")
                     .map((tag) => tag.trim())
                     .filter((tag) => tag)
-                    .map((tag) => (
-                      <span key={tag} className="text-xs px-2 py-1 rounded-full bg-primary/15 text-primary font-medium ring-1 ring-border/70">
-                        #{tag}
-                      </span>
-                    ))}
+                    .map((tag, i) => {
+                      const palette = [
+                        "var(--color-chart-1)",
+                        "var(--color-chart-2)",
+                        "var(--color-chart-3)",
+                        "var(--color-chart-4)",
+                        "var(--color-chart-5)",
+                      ]
+                      const color = palette[i % palette.length]
+                      return (
+                        <span
+                          key={tag}
+                          className="text-xs px-2 py-1 rounded-full font-medium border"
+                          style={{ color, borderColor: color, background: "color-mix(in oklab, currentColor 12%, transparent)" as any }}
+                        >
+                          #{tag}
+                        </span>
+                      )
+                    })}
                 </div>
               )}
             </div>

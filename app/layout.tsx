@@ -39,6 +39,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans antialiased`}>
+        <div className="fixed inset-0 -z-10 overflow-hidden">
+          <div className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full blur-3xl opacity-30 bg-[radial-gradient(ellipse_at_center,var(--color-primary)_0%,transparent_60%)]" />
+          <div className="pointer-events-none absolute bottom-[-120px] right-[-120px] h-[420px] w-[420px] rounded-full blur-3xl opacity-20 bg-[radial-gradient(ellipse_at_center,var(--color-chart-2)_0%,transparent_60%)]" />
+        </div>
         <PageLayoutWrapper>{children}</PageLayoutWrapper>
         <Analytics />
       </body>
